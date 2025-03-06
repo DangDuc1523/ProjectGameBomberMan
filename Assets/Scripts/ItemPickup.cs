@@ -40,22 +40,7 @@ public class ItemPickup : MonoBehaviour
             OnItemPickup(other.gameObject);
         }
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
-        {
-            Destroy(gameObject);
-            Debug.Log("💥 Item đã bị phá hủy bởi vụ nổ!");
-        }
     }
 
 
-
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Explosion"))
-    //    {
-    //        gameObject.SetActive(false);
-    //        Debug.Log("Player đã chạm vào Enemy và chết");
-    //    }
-    //}
 }

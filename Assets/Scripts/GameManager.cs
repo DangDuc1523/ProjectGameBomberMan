@@ -4,9 +4,14 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
+    public GameObject winGame;
+    public GameObject restartGame;
+    public GameObject ButtonExit;
+    public GameObject ButtonConfirm;
     public static GameManager Instance { get; private set; }
 
     private GameObject[] players;
+
 
     private void Awake()
     {
@@ -27,6 +32,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+        ButtonExit.SetActive(true);
+        ButtonConfirm.SetActive(false);
+        restartGame.SetActive(false);
+        winGame.SetActive(false);
     }
 
     public void CheckWinState()
@@ -41,7 +50,8 @@ public class GameManager : MonoBehaviour
         }
 
         if (aliveCount <= 1) {
-            Invoke(nameof(NewRound), 3f);
+
+            restartGame.SetActive(true);           
         }
     }
 
@@ -53,8 +63,24 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Đã nhấn nút Exit!");
+        ButtonExit.SetActive(false);
+        ButtonConfirm.SetActive(true);           
+    }
+
+    public void ButtonYes()
+    {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ButtonNo()
+    {
+        ButtonExit.SetActive(true);
+        ButtonConfirm.SetActive(false);
+    }
+
+    public void RestartGame()
+    {
+        Invoke(nameof(NewRound), 3f);
     }
 
 }

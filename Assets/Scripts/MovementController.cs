@@ -4,9 +4,17 @@ using UnityEngine.SocialPlatforms.Impl;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementController : MonoBehaviour
 {
+    public GameObject winGame;
+
+
     private Rigidbody2D rb;
     private Vector2 direction = Vector2.down;
     public float speed = 5f;
+    private bool checkDie;
+
+    public GameObject restartGame;
+
+
 
     [Header("Input")]
     public KeyCode inputUp = KeyCode.W;
@@ -68,14 +76,26 @@ public class MovementController : MonoBehaviour
     {
         if ( other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
         {
-            DeathSequence();
-            Debug.Log("Player đã bị bomb" + other.tag);
+            //Playerstatus playerHealth = other.GetComponent<Playerstatus>();
+            //checkDie = playerHealth.takeDamage(1);
+            //if (!checkDie)
+            //{
+                DeathSequence();
+                Debug.Log("Player đã bị bomb" + other.tag);
+          //  }
+            
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("FireBoss"))
         {
             DeathSequence();
             Debug.Log("Player đã bị bắn" + other.tag);
+        }
+
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            winGame.SetActive(true);
+            restartGame.SetActive(true);
         }
     }
 
@@ -86,6 +106,8 @@ public class MovementController : MonoBehaviour
             DeathSequence();
             Debug.Log("Player đã chạm vào Enemy và chết");
         }
+
+       
 
     }
 

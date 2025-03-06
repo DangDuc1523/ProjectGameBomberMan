@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bomberman State 2.unity
     guid: c034d9ff0e6133c418481008fc15e6bd
+  - enabled: 1
+    path: Assets/Scenes/Bomberman State 3.unity
+    guid: fff5c094e51cdf342ae527ea83f4c4a2
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
