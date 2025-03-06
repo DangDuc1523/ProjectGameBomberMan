@@ -92,7 +92,7 @@ public class MovementController : MonoBehaviour
             Debug.Log("Player đã bị bắn" + other.tag);
         }
 
-        if (other.gameObject.CompareTag("Finish"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Finish"))
         {
             winGame.SetActive(true);
             restartGame.SetActive(true);
@@ -106,8 +106,13 @@ public class MovementController : MonoBehaviour
             DeathSequence();
             Debug.Log("Player đã chạm vào Enemy và chết");
         }
+        //if (collision.gameObject.CompareTag("Finish"))
+        //{
+        //    winGame.SetActive(true);
+        //    restartGame.SetActive(true);
+        //}
 
-       
+
 
     }
 
