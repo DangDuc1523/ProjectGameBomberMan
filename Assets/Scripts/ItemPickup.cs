@@ -7,6 +7,7 @@ public class ItemPickup : MonoBehaviour
         ExtraBomb,
         BlastRadius,
         SpeedIncrease,
+        key,
     }
 
     public ItemType type;
@@ -25,6 +26,9 @@ public class ItemPickup : MonoBehaviour
 
             case ItemType.SpeedIncrease:
                 player.GetComponent<MovementController>().speed++;
+                break;
+            case ItemType.key:
+                player.GetComponent<MovementController>().haveKey = true;
                 break;
         }
 

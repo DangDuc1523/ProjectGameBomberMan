@@ -4,12 +4,12 @@ public class EnemyMoveAuto : MonoBehaviour
 {
     public float speed = 2f;         // Tốc độ di chuyển
     public float changeTime = 2f;    // Thời gian đổi hướng
+    public bool isBoss = false;      // Xác định đây là boss hay enemy
+    public GameObject itemPrefab;    // Prefab của item (chỉ dành cho boss)
 
     private Vector2 movementDirection;
     private Rigidbody2D rb;
     private float timer;
-
-
 
     void Start()
     {
@@ -48,13 +48,13 @@ public class EnemyMoveAuto : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Bomb")) // Nếu va chạm với tường, đổi hướng
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Bomb"))
         {
-           
             ChangeDirection();
         }
 
-        if (collision.gameObject.CompareTag("Enemy")){
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
             Debug.Log("ĐÃ CHẠM NHAU");
         }
     }
@@ -63,7 +63,13 @@ public class EnemyMoveAuto : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
         {
-            gameObject.SetActive(false);
+            // Nếu là Boss, spawn ra item khi chết
+            if (isBoss && itemPrefab != null)
+            {
+                Instantiate(itemPrefab, transform.position, Quaternion.identity);
+            }
+
+            gameObject.SetActive(false); // Xóa enemy/boss khi trúng bom
         }
     }
 }

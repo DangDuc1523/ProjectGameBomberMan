@@ -58,21 +58,28 @@ public class MainMenu : MonoBehaviour {
     public void SwiftGame()
     {
 
-        PlayerPrefs.SetString("NextScene", "Bomberman");
+        PlayerPrefs.SetString("NextScene", "SwiftGamePvP");
         SceneManager.LoadScene("LoadingScene");
     }
 
     public void BattleGroundGame()
     {
 
-        PlayerPrefs.SetString("NextScene", "Bomberman State 2"); 
+        PlayerPrefs.SetString("NextScene", "BattleGroundGame"); 
+        SceneManager.LoadScene("LoadingScene");
+    }
+
+    public void teleportMode()
+    {
+
+        PlayerPrefs.SetString("NextScene", "teleportMode");
         SceneManager.LoadScene("LoadingScene");
     }
 
     public void SingleGame()
     {
 
-        PlayerPrefs.SetString("NextScene", "Bomberman State 3");
+        PlayerPrefs.SetString("NextScene", "State 1");
         SceneManager.LoadScene("LoadingScene");
     }
 

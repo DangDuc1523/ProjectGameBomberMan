@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject winGame;
+    public GameObject messengerGame;
     public GameObject restartGame;
     public GameObject ButtonExit;
     public GameObject ButtonConfirm;
+    public GameObject nextState;
+
+    public string nameState;
+
     public static GameManager Instance { get; private set; }
 
     private GameObject[] players;
@@ -36,6 +41,8 @@ public class GameManager : MonoBehaviour
         ButtonConfirm.SetActive(false);
         restartGame.SetActive(false);
         winGame.SetActive(false);
+        messengerGame.SetActive(false);
+        nextState.SetActive(false);
     }
 
     public void CheckWinState()
@@ -81,6 +88,11 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Invoke(nameof(NewRound), 3f);
+    }
+
+    public void changeState()
+    {
+        SceneManager.LoadScene(nameState);
     }
 
 }

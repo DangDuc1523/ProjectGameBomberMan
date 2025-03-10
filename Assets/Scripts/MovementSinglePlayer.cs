@@ -1,23 +1,13 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class MovementController : MonoBehaviour
+public class MovementSinglePlayer : MonoBehaviour
 {
-    public GameObject winGame;
-    public GameObject messegerGame;
-    public GameObject NextState;
     private Rigidbody2D rb;
     private Vector2 direction = Vector2.down;
     public float speed = 5f;
-    private bool checkDie;
-
-    public bool haveKey = false;
-
-    public GameObject restartGame;
-
-
+    public bool isZombie = false; // Kiểm tra xem nhân vật có phải zombie không
 
     [Header("Input")]
     public KeyCode inputUp = KeyCode.W;
@@ -32,6 +22,8 @@ public class MovementController : MonoBehaviour
     public AnimatedSpriteRenderer spriteRendererRight;
     public AnimatedSpriteRenderer spriteRendererDeath;
     private AnimatedSpriteRenderer activeSpriteRenderer;
+    public GameObject zombiePrefab; // Thêm vào trong script
+
 
     private void Awake()
     {
@@ -41,15 +33,24 @@ public class MovementController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(inputUp)) {
+        if (Input.GetKey(inputUp))
+        {
             SetDirection(Vector2.up, spriteRendererUp);
-        } else if (Input.GetKey(inputDown)) {
+        }
+        else if (Input.GetKey(inputDown))
+        {
             SetDirection(Vector2.down, spriteRendererDown);
-        } else if (Input.GetKey(inputLeft)) {
+        }
+        else if (Input.GetKey(inputLeft))
+        {
             SetDirection(Vector2.left, spriteRendererLeft);
-        } else if (Input.GetKey(inputRight)) {
+        }
+        else if (Input.GetKey(inputRight))
+        {
             SetDirection(Vector2.right, spriteRendererRight);
-        } else {
+        }
+        else
+        {
             SetDirection(Vector2.zero, activeSpriteRenderer);
         }
     }
@@ -77,16 +78,10 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
         {
-            //Playerstatus playerHealth = other.GetComponent<Playerstatus>();
-            //checkDie = playerHealth.takeDamage(1);
-            //if (!checkDie)
-            //{
-                DeathSequence();
-                Debug.Log("Player đã bị bomb" + other.tag);
-          //  }
-            
+            DeathSequence();
+            Debug.Log("Player đã bị bomb" + other.tag);
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("FireBoss"))
@@ -94,27 +89,6 @@ public class MovementController : MonoBehaviour
             DeathSequence();
             Debug.Log("Player đã bị bắn" + other.tag);
         }
-
-        if (other.gameObject.layer == LayerMask.NameToLayer("Finish"))
-        {
-            if (haveKey)
-            {
-                winGame.SetActive(true);
-                NextState.SetActive(true);
-            }
-            else
-            {
-                messegerGame.SetActive(true);
-                StartCoroutine(HideMessageAfterTime(3f));
-            }
-        }
-    
-    }
-
-    IEnumerator HideMessageAfterTime(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        messegerGame.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -122,32 +96,45 @@ public class MovementController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             DeathSequence();
-            Debug.Log("Player đã chạm vào Enemy và chết");
+            Debug.Log("Player đã chạm vào Enemy và trở thành Zombie");
         }
-        //if (collision.gameObject.CompareTag("Finish"))
-        //{
-        //    winGame.SetActive(true);
-        //    restartGame.SetActive(true);
-        //}
 
-
-
+        // Nếu zombie chạm vào người chơi khác, người đó cũng biến thành zombie
+        if (isZombie && collision.gameObject.CompareTag("Player"))
+        {
+            MovementSinglePlayer player = collision.gameObject.GetComponent<MovementSinglePlayer>();
+            if (player != null && !player.isZombie)
+            {
+                player.DeathSequence(); // Biến người chơi này thành zombie
+                Debug.Log("Người chơi bị zombie chạm vào và biến thành zombie!");
+            }
+        }
     }
 
 
     private void DeathSequence()
     {
-        enabled = false;
-        GetComponent<BombController>().enabled = false;
 
-        spriteRendererUp.enabled = false;
-        spriteRendererDown.enabled = false;
-        spriteRendererLeft.enabled = false;
-        spriteRendererRight.enabled = false;
-        spriteRendererDeath.enabled = true;
+        if (isZombie) return; // Nếu đã là zombie rồi thì không làm gì nữa
 
-        Invoke(nameof(OnDeathSequenceEnded), 1.25f);
+        isZombie = true; // Đánh dấu Player đã thành Zombie
+        GetComponent<BombController>().enabled = false; // Không thể đặt bom nữa
+
+        // Lưu vị trí Player trước khi bị xóa
+        Vector3 deathPosition = transform.position;
+
+        // Xóa Player hiện tại
+        Destroy(gameObject);
+
+        
+
+        // Tạo Zombie tại vị trí cũ của Player 
+        Instantiate(zombiePrefab, deathPosition, Quaternion.identity);
+        Debug.Log("Zombie đã xuất hiện tại vị trí Player chết!");
+        // Kiểm tra điều kiện thắng/thua
+        GameManager.Instance.CheckWinState();
     }
+
 
     private void OnDeathSequenceEnded()
     {
