@@ -11,6 +11,8 @@ public class MainMenu : MonoBehaviour {
     public GameObject menuMain;
     public GameObject menuSetting;
     public GameObject menuTutorial;
+    public GameObject UItutorial;
+    public GameObject aboutUs;
 
     public CanvasGroup logoPanel;  // UI của logo
     public CanvasGroup menuPanel;  // UI của menu chính
@@ -23,6 +25,8 @@ public class MainMenu : MonoBehaviour {
         menuSetting.SetActive(false);
         menuMain.SetActive(false);
         menuTutorial.SetActive(false);
+        aboutUs.SetActive(false);
+
 
 
         // Kiểm tra trạng thái âm thanh đã lưu
@@ -93,6 +97,7 @@ public class MainMenu : MonoBehaviour {
     {
         menuMain.SetActive(false);
         menuTutorial.SetActive(true);
+        UItutorial.SetActive(true);
     }
 
     public void OnExitClicked()
@@ -110,6 +115,17 @@ public class MainMenu : MonoBehaviour {
     public void OnExitClickedInTutorial()
     {
         menuTutorial.SetActive(false);
+        menuMain.SetActive(true);
+    }
+
+    public void AboutUs()
+    {
+        aboutUs.SetActive(true);
+        menuMain.SetActive(false);
+    }
+    public void OnExitAboutUs()
+    {
+        aboutUs.SetActive(false);
         menuMain.SetActive(true);
     }
 
