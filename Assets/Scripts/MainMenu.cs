@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour {
     public GameObject menuTutorial;
     public GameObject UItutorial;
     public GameObject aboutUs;
+    public GameObject StoryUI;
 
     public CanvasGroup logoPanel;  // UI của logo
     public CanvasGroup menuPanel;  // UI của menu chính
@@ -26,6 +27,7 @@ public class MainMenu : MonoBehaviour {
         menuMain.SetActive(false);
         menuTutorial.SetActive(false);
         aboutUs.SetActive(false);
+        StoryUI.SetActive(false);
 
 
 
@@ -87,6 +89,12 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene("LoadingScene");
     }
 
+    public void StoryGame()
+    {
+        menuMain.SetActive(false);
+        StoryUI.SetActive(true);
+    }
+
     public void OnSettingsClicked()
     {
         menuMain.SetActive(false);
@@ -129,6 +137,11 @@ public class MainMenu : MonoBehaviour {
         menuMain.SetActive(true);
     }
 
+    public void OnExitStory()
+    {
+        StoryUI.SetActive(false);
+        menuMain.SetActive(true);
+    }
 
 
     IEnumerator ShowLogoThenMenu()

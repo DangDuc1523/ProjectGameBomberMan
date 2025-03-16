@@ -97,17 +97,20 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         ButtonExit.SetActive(false);
+        Time.timeScale = 0;
         ButtonConfirm.SetActive(true);
     }
 
     public void ButtonYes()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void ButtonNo()
     {
         ButtonExit.SetActive(true);
+        Time.timeScale = 1;
         ButtonConfirm.SetActive(false);
     }
 

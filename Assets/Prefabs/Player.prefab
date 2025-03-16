@@ -673,4 +673,4 @@ MonoBehaviour:
   explosionRadius: 1
   destructibleTiles: {fileID: 0}
   destructiblePrefab: {fileID: -8738203639632321532, guid: 1ac7a5f8ae90ed04aa34c0753307c241, type: 3}
-  bombExplosionSound: {fileID: 0}
+  bombExplosionSound: {fileID: 8300000, guid: 94ae75f35204e5d4dbadeecb5755c104, type: 3}

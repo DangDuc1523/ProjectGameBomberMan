@@ -711,7 +711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115cecd46c3b77345b677c377ae16f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 4
   changeTime: 1
   isBoss: 0
   itemPrefab: {fileID: 0}
@@ -875,7 +875,7 @@ Transform:
   m_GameObject: {fileID: 234176329}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.3, y: -6.38, z: 0}
+  m_LocalPosition: {x: 20.02, y: -5.95, z: 0}
   m_LocalScale: {x: 0.8473836, y: 0.8228147, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115cecd46c3b77345b677c377ae16f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 4
   changeTime: 1
   isBoss: 0
   itemPrefab: {fileID: 0}
@@ -1175,7 +1175,7 @@ Transform:
   m_GameObject: {fileID: 342821277}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.42, y: 2.7, z: 0}
+  m_LocalPosition: {x: 19.93, y: 3.13, z: 0}
   m_LocalScale: {x: 0.8473836, y: 0.8228147, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1584,10 +1584,10 @@ MonoBehaviour:
   speed: 5
   haveKey: 0
   restartGame: {fileID: 1104395652}
-  inputUp: 119
-  inputDown: 115
-  inputLeft: 97
-  inputRight: 100
+  inputUp: 273
+  inputDown: 274
+  inputLeft: 276
+  inputRight: 275
   spriteRendererUp: {fileID: 536663078}
   spriteRendererDown: {fileID: 1809392236}
   spriteRendererLeft: {fileID: 431448526}
@@ -2180,6 +2180,10 @@ PrefabInstance:
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 2349992535456157540, guid: 7e03f2debfa63fb47ad14f1dd978b33b, type: 3}
+    - target: {fileID: 2405232517963387588, guid: ec697c89f5c2bc141afef9f5a5cdc2c1, type: 3}
+      propertyPath: scoreValue
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 5361287596851015935, guid: ec697c89f5c2bc141afef9f5a5cdc2c1, type: 3}
       propertyPath: m_Name
       value: Boss_0 (1)
@@ -2510,7 +2514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115cecd46c3b77345b677c377ae16f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 4
   changeTime: 1
   isBoss: 0
   itemPrefab: {fileID: 0}
@@ -6794,6 +6798,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5879614341149993121, guid: 6bdbecbdf34cd67488978d9895d00820, type: 3}
+      propertyPath: inputKey
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879614341149993121, guid: 6bdbecbdf34cd67488978d9895d00820, type: 3}
       propertyPath: explosionRadius
       value: 1
       objectReference: {fileID: 0}
@@ -6972,11 +6980,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5879614341149993120, guid: 6bdbecbdf34cd67488978d9895d00820, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.75
+      value: -53.7
       objectReference: {fileID: 0}
     - target: {fileID: 5879614341149993120, guid: 6bdbecbdf34cd67488978d9895d00820, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 31.44
+      value: 78.6
       objectReference: {fileID: 0}
     - target: {fileID: 5879614341149993120, guid: 6bdbecbdf34cd67488978d9895d00820, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21052,6 +21060,10 @@ PrefabInstance:
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 2349992535456157540, guid: 7e03f2debfa63fb47ad14f1dd978b33b, type: 3}
+    - target: {fileID: 2405232517963387588, guid: ec697c89f5c2bc141afef9f5a5cdc2c1, type: 3}
+      propertyPath: scoreValue
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 5361287596851015935, guid: ec697c89f5c2bc141afef9f5a5cdc2c1, type: 3}
       propertyPath: m_Name
       value: Boss_0
@@ -21122,7 +21134,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 354624295418153615, guid: 841815760ffc0df4b894a5153158a863, type: 3}
       propertyPath: speed
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 354624295418153615, guid: 841815760ffc0df4b894a5153158a863, type: 3}
       propertyPath: m_Enabled

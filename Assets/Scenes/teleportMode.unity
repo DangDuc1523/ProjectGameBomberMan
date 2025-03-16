@@ -4588,7 +4588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocketPrefab: {fileID: 3113864380700747536, guid: 3063ce4060184d445844bfbe1bfd2c7e, type: 3}
-  fireRate: 10
+  fireRate: 2
 --- !u!61 &1440399025
 BoxCollider2D:
   m_ObjectHideFlags: 0
