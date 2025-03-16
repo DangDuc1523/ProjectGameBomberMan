@@ -169,8 +169,10 @@ MonoBehaviour:
   restartGame: {fileID: 1659816029}
   ButtonExit: {fileID: 550349487}
   ButtonConfirm: {fileID: 1515262279}
-  nextState: {fileID: 0}
+  nextState: {fileID: 1300807167}
   nameState: 
+  score: 0
+  scoreText: {fileID: 0}
 --- !u!82 &209817204
 AudioSource:
   m_ObjectHideFlags: 0

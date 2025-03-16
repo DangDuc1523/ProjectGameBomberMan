@@ -463,13 +463,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6202b4bd6cdfe4aacbc20d3babb30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winGame: {fileID: 0}
-  messengerGame: {fileID: 0}
+  winGame: {fileID: 45712896}
+  messengerGame: {fileID: 45712896}
   restartGame: {fileID: 1014556808}
   ButtonExit: {fileID: 586830683}
   ButtonConfirm: {fileID: 45712896}
-  nextState: {fileID: 0}
+  nextState: {fileID: 45712896}
   nameState: 
+  score: 0
+  scoreText: {fileID: 0}
 --- !u!82 &209817204
 AudioSource:
   m_ObjectHideFlags: 0
