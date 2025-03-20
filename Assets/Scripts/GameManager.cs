@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject ButtonExit;
     public GameObject ButtonConfirm;
     public GameObject nextState;
+    public GameObject GameOver;
 
     public string nameState;
     public int score = 0;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
         players = GameObject.FindGameObjectsWithTag("Player");
         ButtonExit.SetActive(true);
         ButtonConfirm.SetActive(false);
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
         winGame.SetActive(false);
         messengerGame.SetActive(false);
         nextState.SetActive(false);
+        GameOver.SetActive(false);
 
         UpdateScoreUI();
     }
@@ -83,8 +86,9 @@ public class GameManager : MonoBehaviour
 
         if (aliveCount <= 1)
         {
-
+            Time.timeScale = 0f;
             restartGame.SetActive(true);
+            GameOver.SetActive(true) ;
         }
     }
 
@@ -116,7 +120,9 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Time.timeScale = 1f;
         Invoke(nameof(NewRound), 3f);
+        
     }
 
     public void changeState()

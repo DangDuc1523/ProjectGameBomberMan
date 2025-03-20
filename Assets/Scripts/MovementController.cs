@@ -19,6 +19,7 @@ public class MovementController : MonoBehaviour
 
 
 
+
     [Header("Input")]
     public KeyCode inputUp = KeyCode.W;
     public KeyCode inputDown = KeyCode.S;
